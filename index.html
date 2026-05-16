@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harley Production — Sistema Noir Samuel Casilla</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-noir: #09090b;
+            --surface-card: #14141b;
+            --accent-magenta: #ff0055;
+            --accent-gold: #cfa851;
+            --text-light: #f8fafc;
+            --text-dim: #94a3b8;
+            --neon-glow: rgba(207, 168, 81, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-noir);
+            color: var(--text-dim);
+            line-height: 1.7;
+            padding: 50px 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* HEADER PREMIUM */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .badge-agency {
+            display: inline-block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent-magenta);
+            font-weight: 800;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255, 0, 85, 0.2);
+            padding: 5px 15px;
+            border-radius: 30px;
+            background: rgba(255, 0, 85, 0.03);
+        }
+
+        .title-main {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: var(--text-light);
+            letter-spacing: -1.5px;
+            line-height: 1.2;
+        }
+
+        .title-main span {
+            color: var(--accent-gold);
+            text-shadow: 0 0 20px var(--neon-glow);
+        }
+
+        /* PANEL CENTRAL DE ESTRATEGIA */
+        .briefcase-intro {
+            background: linear-gradient(145deg, #181822 0%, #0e0e12 100%);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-left: 4px solid var(--accent-gold);
+            padding: 35px;
+            border-radius: 16px;
+            margin-bottom: 45px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+
+        .briefcase-intro h2 {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .briefcase-intro p {
+            font-size: 1rem;
+            color: #cbd5e1;
+        }
+
+        /* SECCIONES Y CONTENIDOS TIPO LOCACIÓN */
+        .headline-section {
+            font-size: 1.35rem;
+            color: var(--text-light);
+            margin: 50px 0 25px 0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .headline-section::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.08), transparent);
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .card-custom {
+            background-color: var(--surface-card);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            padding: 30px;
+            border-radius: 14px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card-custom:hover {
+            transform: translateY(-4px);
+            border-color: rgba(207, 168, 81, 0.25);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.6);
+        }
+
+        .card-custom h3 {
+            color: var(--text-light);
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-custom p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .badge-toma {
+            background: var(--accent-magenta);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* TIMING CONTROL SUB-SISTEMA (ROBUSTO) */
+        .terminal-prompter {
+            background: #050507;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 25px;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+        }
+
+        .dashboard-timer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            background: rgba(20, 20, 27, 0.6);
+            padding: 20px 30px;
+            border-radius: 14px;
+            margin-bottom: 35px;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .timer-display {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            font-family: monospace;
+            text-shadow: 0 0 15px rgba(207, 168, 81, 0.2);
+            transition: color 0.3s ease;
+        }
+
+        .btn-control {
+            background: transparent;
+            border: 2px solid var(--accent-gold);
+            color: var(--text-light);
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-control:hover {
+            background: var(--accent-gold);
+            color: #000;
+            box-shadow: 0 0 15px rgba(207, 168, 81, 0.4);
+        }
+
+        /* Barra de Progreso Avanzada */
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            margin-top: -15px;
+            margin-bottom: 35px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-magenta), var(--accent-gold));
+            transition: width 0.1s linear;
+        }
+
+        .row-script {
+            margin-bottom: 35px;
+            border-left: 3px solid rgba(255,255,255,0.05);
+            padding-left: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .row-script:hover {
+            border-color: var(--accent-magenta);
+        }
+
+        .row-script label {
+            font-size: 0.75rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+
+        .row-script p {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* SECCIÓN TRUCOS TÉCNICOS CERCANOS */
+        .box-tips {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px dashed rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .box-tips h4 {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .box-tips ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .box-tips ul li {
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .box-tips ul li::before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+        }
+
+        /* FOOTER BRANDING CRISTIAN */
+        .footer-agency-block {
+            background: linear-gradient(135deg, rgba(255, 0, 85, 0.04) 0%, rgba(0, 0, 0, 0) 100%);
+            border: 1px solid rgba(255, 0, 85, 0.08);
+            padding: 35px;
+            border-radius: 16px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .footer-agency-block h3 {
+            color: var(--text-light);
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: #3b3b4f;
+            text-transform: uppercase;
+        }
+
+        /* ANIMACIONES ENTRADA */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 25px 15px; }
+            .terminal-prompter { padding: 20px; }
+            .dashboard-timer { flex-direction: column; text-align: center; padding: 20px; }
+            .row-script p { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <div class="badge-agency">Harley Production Engine v4</div>
+            <h1 class="title-main">Estructura de Retención <span>Samuel Casilla</span></h1>
+        </header>
+
+        <div class="briefcase-intro">
+            <h2>Pauta de Grabación para Mañana Domingo ⚡</h2>
+            <p>
+                Hola Samuel, hola Sara. Cristian por acá. Diseñé este ecosistema interactivo para que la sesión de mañana sea rápida, fluida y con un resultado de altísimo valor estético. No se preocupen por la parte compleja del montaje: ustedes concéntrense en capturar estos elementos simples y limpios en la calle, que del resto de la magia me encargo yo.
+            </p>
+        </div>
+
+        <section>
+            <h2 class="headline-section">📍 Locaciones Ideales (Mañana Domingo)</h2>
+            <div class="grid-layout">
+                
+                <div class="card-custom">
+                    <h3>🏛️ Opción Centro: Plazuela San Ignacio</h3>
+                    <p>Mañana domingo temprano esta plaza es súper pacífica y silenciosa. Las fachadas antiguas de arquitectura clásica de los edificios universitarios y la iglesia de fondo dan un estilo oscuro, gótico e internacional perfecto para la estética de Noir.</p>
+                </div>
+
+                <div class="card-custom">
+                    <h3>🌳 Opción El Poblado: Parque La Presidenta</h3>
+                    <p>Un espacio verde muy curado en medio del entorno urbano. Los puentes de madera y los senderos rodeados de naturaleza limpia les darán un audio súper limpio si graban en las primeras horas del día.</p>
+                </div>
+
+                <div class="card-custom">
+                    <h3>🏢 Opción Financiera: Aceras Milla de Oro</h3>
+                    <p>El corredor comercial del San Fernando Plaza ofrece fondos de cristales masivos y metal pulido. Un look corporativo, lujoso y cosmopolita impecable para el estatus de la marca.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <h2 class="headline-section">🎬 Las 3 Tomas Orgánicas</h2>
+            <p style="margin-bottom: 20px; font-size: 0.95rem;">Samuel, busque encuadres verticales limpios. Sara, mantenga gesticulaciones muy tranquilas y fluidas. Nada fingido:</p>
+            
+            <div class="grid-layout">
+                
+                <div class="card-custom">
+                    <h3><span class="badge-toma">Toma 1</span> Presencia Fija</h3>
+                    <p>Sara mira de forma directa y magnética al lente de la cámara desde el segundo cero. Una postura de total control, sosteniendo el perfume con elegancia y seguridad.</p>
+                </div>
+
+                <div class="card-custom">
+                    <h3><span class="badge-toma">Toma 2</span> Conexión Humana</h3>
+                    <p>Sara inicia con la mirada ligeramente hacia un costado y luego gira el rostro de forma suave hacia el lente de la cámara, regalando una sonrisa sutil y natural.</p>
+                </div>
+
+                <div class="card-custom">
+                    <h3><span class="badge-toma">Toma 3</span> Gesto Deseo</h3>
+                    <p>Sara sonríe de forma pícara o cómplice mientras desliza de forma espontánea su mano cerca de la línea de su cuello, proyectando frescura y fijación.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <h2 class="headline-section">🎙️ El Guión Final (Voz en Off — 16s)</h2>
+            <p style="font-size: 0.95rem; margin-bottom: 20px;">
+                Este guión usa el <strong>tuteo</strong> directo para enganchar. Ensáyelo con el medidor robusto de abajo para dominar las pausas naturales.
+            </p>
+
+            <div class="terminal-prompter">
+                
+                <div class="dashboard-timer">
+                    <div>
+                        <span style="font-size: 0.8rem; text-transform: uppercase; font-weight: 700; color: #fff;">Consola de Ritmo</span>
+                        <p style="font-size: 0.75rem; color: var(--text-dim);">Rango meta: 15.0s a 16.5s de pura retención.</p>
+                    </div>
+                    <div class="timer-display" id="reloj">00.0s</div>
+                    <button class="btn-control" id="btnReloj" onclick="controlarReloj()">Probar Ritmo</button>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-bar" id="barraProgreso"></div>
+                </div>
+
+                <div class="row-script">
+                    <label>Bloque Inicial (Segundos 0 al 4)</label>
+                    <p>"Hay lugares que huelen bien... Y está NOIR ELIXIR."</p>
+                </div>
+
+                <div class="row-script">
+                    <label>Bloque de Deseo (Segundos 4 al 11)</label>
+                    <p>"No venden perfume. Venden lo que la gente recuerda de ti cuando ya no estás."</p>
+                </div>
+
+                <div class="row-script">
+                    <label>Bloque de Cierre (Segundos 11 al 16)</label>
+                    <p>"Desde que lo sé, me preguntan si fue de ahí. Y no se lo digo a cualquiera."</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="box-tips">
+            <h4>📱 Recomendaciones Técnicas para Mañana</h4>
+            <ul>
+                <li><strong>¿Qué app usar?</strong> Usen estrictamente la <strong>aplicación de cámara nativa</strong> de su celular (ya sea iPhone o Android). No graben desde redes sociales para asegurar el 100% de la calidad del lente.</li>
+                <li><strong>El secreto del micrófono:</strong> Para grabar el audio de la voz en off, sostengan el celular de manera lateral, dejando el micrófono a unos <strong>5 a 7 centímetros de distancia a un costado de la boca</strong>. Jamás de frente, así el aire al hablar no genera ruidos extraños.</li>
+                <li><strong>Espacio controlado:</strong> Busquen un punto abierto pero lo suficientemente apartado del tráfico pesado para que la voz se escuche cristalina y cercana.</li>
+            </ul>
+        </section>
+
+        <div class="footer-agency-block">
+            <h3>🚀 Grabación lista, el resto corre por mi cuenta</h3>
+            <p style="font-size: 0.95rem; color: #cbd5e1; max-width: 700px; margin: 0 auto;">
+                Mañana una vez que terminen de capturar estos archivos de video y la nota de voz, simplemente me los comparten. Yo, <strong>Cristian</strong>, me encargo de ejecutar los cortes quirúrgicos en el montaje, fusionar el audio limpio, meter la instrumentación musical de fondo con la compresión adecuada para redes y redimensionar el formato final. ¡Hagamos que quede perfecto!
+            </p>
+        </div>
+
+        <footer>
+            Harley Production Platform • Red Sapien Core System © 2026
+        </footer>
+
+    </div>
+
+    <script>
+        let corriendo = false;
+        let tInicio;
+        let tActual;
+        let tTranscurrido;
+        let idAnimacion;
+        const tiempoMeta = 16.5; // Tiempo máximo recomendado para la compresión
+
+        function controlarReloj() {
+            const boton = document.getElementById('btnReloj');
+            const visor = document.getElementById('reloj');
+            const barra = document.getElementById('barraProgreso');
+            
+            if (!corriendo) {
+                tInicio = new Date().getTime();
+                idAnimacion = setInterval(actualizarPanel, 50);
+                corriendo = true;
+                boton.innerText = "Detener";
+                visor.style.color = "var(--accent-gold)";
+            } else {
+                clearInterval(idAnimacion);
+                corriendo = false;
+                boton.innerText = "Reiniciar";
+                
+                const resultado = parseFloat(visor.innerText);
+                // Validación de rango óptimo para retención quirúrgica en Facebook
+                if (resultado >= 15.0 && resultado <= 16.5) {
+                    visor.style.color = "#22c55e"; // Color de éxito absoluto
+                } else {
+                    visor.style.color = "var(--accent-magenta)"; // Ajustar ritmo
+                }
+            }
+        }
+
+        function actualizarPanel() {
+            tActual = new Date().getTime();
+            tTranscurrido = tActual - tInicio;
+            let segundosNum = tTranscurrido / 1000;
+            
+            // Actualizar número en pantalla
+            document.getElementById('reloj').innerText = segundosNum.toFixed(1) + "s";
+            
+            // Actualizar barra de progreso dinámica
+            let porcentaje = (segundosNum / tiempoMeta) * 100;
+            if (porcentaje > 100) porcentaje = 100;
+            document.getElementById('barraProgreso').style.width = porcentaje + "%";
+        }
+    </script>
+</body>
+</html>
